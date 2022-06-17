@@ -1,0 +1,15 @@
+============================= Start Server =============================
+cd keypair/
+chmod 400 TestServerKeyPair.cer
+ssh -i TestServerKeyPair.cer ec2-user@52.91.168.248
+yum check-update
+curl -sL https://rpm.nodesource.com/setup_16.x | sudo bash -
+sudo yum install nodejs
+npm install express
+mkdir testServer
+npx express-generator --pug testServer
+cd testServer/
+npm install
+
+============================= ADD PORT ACCESS =============================
+go to EC2 > Instances > Instance Name > Security > Security groups > Edit inbound rules > Add rule > Add port range > Save

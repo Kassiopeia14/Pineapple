@@ -1,0 +1,19 @@
+============================= GITHUB =============================
+sudo yum install git
+git clone https://github.com/Kassiopeia14/Pineapple.git
+USERNAME and PASSWORD(TOKEN)
+npx express-generator --pug Pineapple/
+cd Pineapple/
+npm install
+sudo yum install mc
+
+============================= GIT COMMIT =============================
+git add *
+git commit -m "COMMENT"
+git push -u origin main
+USERNAME and PASSWORD(TOKEN)      OR        git config --global credential.helper store  
+
+============================= GIT PUSH WITH DELETING FILES =============================
+git add -u :/
+git commit -m "COMMENT"
+git push -u origin main
