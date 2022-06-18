@@ -1,4 +1,5 @@
 ============================= Start Server =============================
+Go to aws.amazon > Ec2 > Instances > Instance state > Start Instance
 cd keypair/
 chmod 400 TestServerKeyPair.cer
 ssh -i TestServerKeyPair.cer ec2-user@52.91.168.248
