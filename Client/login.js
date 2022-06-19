@@ -2,7 +2,7 @@ const http = require('http');
 
 const options = {
   host: '18.134.160.183',
-  port:3000,
+  port: 3000,
   path: '/login',
   method: 'POST',
   headers: {
@@ -12,7 +12,7 @@ const options = {
 };
 
 const req = http.request(options, (res) => {
-    if (res.statusCode !== 201) {
+    if (res.statusCode !== 200) {
       console.error(`Did not get a Created from the server. Code: ${res.statusCode}`);
       res.resume();
       return;
