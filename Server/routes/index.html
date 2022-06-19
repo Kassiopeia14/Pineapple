@@ -9,10 +9,8 @@
           pass=$("#password").val();
           $.post("/login",
           {user: user, password: pass}, 
-          function(data){
-            if(data === 'yes') {
-                alert("login success");
-              }
+          function(response){
+          alert(response.text);
           });
         });
       });
