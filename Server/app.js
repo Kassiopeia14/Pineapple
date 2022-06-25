@@ -6,14 +6,18 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
+var todosRouter = require('./routes/todos');
+var dataRouter = require('./routes/data');
 
 var app = express();
+
 
 //DATABASE
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database(path.join(__dirname, 'Data/test.db'));
 
 db.serialize(() => {
+  /*
   db.run("CREATE TABLE lorem (info TEXT)");
 
   const stmt = db.prepare("INSERT INTO lorem VALUES (?)");
@@ -21,6 +25,7 @@ db.serialize(() => {
       stmt.run("Ipsum " + i);
   }
   stmt.finalize();
+  */
 
   db.each("SELECT rowid AS id, info FROM lorem", (err, row) => {
       console.log(row.id + ": " + row.info);
@@ -43,6 +48,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
+app.use('/todos', todosRouter);
+app.use('/data', dataRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

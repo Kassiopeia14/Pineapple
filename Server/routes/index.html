@@ -7,21 +7,48 @@
         $("#submit").click(function(){
           user=$("#user").val();
           pass=$("#password").val();
+          
+          let str = ''
+
           $.post("/login",
           {user: user, password: pass}, 
           function(response){
-          alert(response.text);
+            alert(response.text);
           });
+          
+          $.post("/data", 
+          {user: user, password: pass}, 
+          function(response){
+            alert(response.text);
+          });
+          
         });
       });
     </script>
 </head>
 <body>
+
 <h1>Hello people !</h1>
 
 <input id="user" size="40" type="TEXT" />
 <input id="password" size="40" type="password" />
 <input id="submit" type="button" value="Submit" />
+
+<h1> Form </h1>
+
+<form action="/todos/text" method="post">
+  <div>
+    <label for="abc"> ABC: </label>
+    <input name="abc" id="abc" value="8">
+  </div>
+  <div>
+    <label for="buba"> BUBA: </label>
+    <input name="buba" id="buba" value="pupa">
+  </div>
+  <div>
+    <button>Send</button>
+  </div>
+</form>
 
 </body>
 </html>
