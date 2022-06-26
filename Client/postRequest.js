@@ -7,7 +7,7 @@ const jsonText = JSON.stringify({
 })
 
 const options = {
-  hostname: '3.10.138.196',
+  hostname: 'localhost',
   port: 3000,
   path: '/todos',
   method: 'POST',

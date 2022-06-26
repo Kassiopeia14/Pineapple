@@ -1,6 +1,0 @@
-Open VSCode
-1. Open a Remote Window (Command + Shift + P) OR or press the little green button "><" at the bottom left
-2. Extensions > Install the Remote-SSH extension  
-3. Remote-SSH: Connect to Host > Add new SSH Host > ssh <name>@<ip> 
-4. Open Users/USER/.ssh/config file > add IdentityFile ~/<keyFile>
-5. Remote-SSH: Connect to Host > <name>@<ip> 

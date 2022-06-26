@@ -4,7 +4,7 @@ const id = 5
 const name = 'John'
 
 const options = {
-  hostname: '13.40.35.36',
+  hostname: 'localhost',
   port: 3000,
   path : '/data/' + id + '/' + name,
   //path: '/data?row_id=5&name=John',

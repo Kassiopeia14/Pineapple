@@ -1,7 +1,7 @@
 const http = require('http');
 
 const options = {
-  host: '3.8.235.39',
+  host: 'localhost',
   port: 3000,
   path: '/login',
   method: 'POST',

@@ -3,7 +3,7 @@ const http = require('http')
 const form = 'abc=7&buba=ppp'
 
 const options = {
-  hostname: '3.10.138.196',
+  hostname: 'localhost',
   port: 3000,
   path: '/todos/text',
   method: 'POST',
