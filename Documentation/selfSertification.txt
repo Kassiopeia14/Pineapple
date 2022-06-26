@@ -1,0 +1,15 @@
+======================== Create SSL certificate =================
+sudo yum update -y                                 //check for updates
+sudo yum install -y mod_ssl                        //install openssl
+cd /etc/pki/tls/certs
+sudo ./make-dummy-cert server.pem                  //create Private Key and Certificate
+sudo openssl pkey -in server.pem -out server.key   //extract the Private Key
+sudo openssl x509 -in server.pem -out server.crt   //extract the Certificate
+
+OR
+
+sudo openssl req -newkey rsa:2048 -sha256 -nodes -keyout server.key -x509 -days 365 -out server.pem -subj "/C=US/ST=New York/L=Brooklyn/O=Example Brooklyn Company/CN=DOMAIN.NAME"
+openssl x509 -text -noout -in server.crt           //inspect the generated certificate
+
+======================== ADD Certificate to KeyChain MacOS =======================
+server.crt => open with KeychainAccess.app => login => Certificates => open DOMAIN.NAME => Trust => Always Trust 

@@ -1,0 +1,83 @@
+========create a certificate using OpenSSL with Subject Alternative Name field (SAN)===========
+
+1.Become a self-signing Certifying Authority (CA):
+
+sudo openssl req -new -newkey rsa:2048 -days 365 -extensions v3_ca -subj "/C=UK/ST=London/L=London/O=KassiopeiaInc/OU=KassiopeiaInc/CN=ec2-18-134-9-161.eu-west-2.compute.amazonaws.com/" -nodes -x509 -sha256 -set_serial 0 -keyout rootServer.key -out rootServer.cer
+
+2.Create a configuration file for the certificate with Subject Alternative Name:
+
+Create an empty text file. Name it openssl-san.cnf The cnf extention is important.
+Add the following lines to the file.
+
+
+[ req ]
+
+default_bits           = 2048
+
+distinguished_name     = req_distinguished_name
+
+req_extensions         = req_ext
+
+ 
+
+[ req_distinguished_name ]
+
+countryName            = Country Name (2 letter code)
+
+stateOrProvinceName    = State or Province Name (full name)
+
+localityName           = Locality Name (eg, city)
+
+organizationName       = Organization Name (eg, company)
+
+commonName             = Common Name (e.g. server FQDN or YOUR name)
+
+ 
+
+# Optionally, specify some defaults.
+countryName_default           = [Country]
+stateOrProvinceName_default   = [State]
+localityName_default           = [City]
+0.organizationName_default     = [Organization]
+organizationalUnitName_default = [Organization unit]
+emailAddress_default           = [Email]
+
+ 
+
+[ req_ext ]
+
+subjectAltName = @alt_names
+
+ 
+
+[alt_names]
+
+DNS.1   = [DNS1]
+
+DNS.2   = [DNS2]
+
+ 
+
+Replace the following values:
+
+•[Country]: Country name (2 letter code).
+
+•[State]: State or Province name (full name).
+
+•[City]: City name (full name).
+
+•[Organization]: Name of your organization
+
+•[Organization unit]: Name of the organizational unit.
+
+•[Email]: Your email address.
+
+•[DNS1] or [DNS2] (or more if needed): you can write the DNS associated with the site of your Work Portal. 
+
+3. Create a Certificate Signing Request (CSR):
+
+sudo openssl req -newkey rsa:2048 -subj "/C=UK/ST=London/L=London/O=KassiopeiaInc/OU=KassiopeiaInc/CN=ec2-18-134-9-161.eu-west-2.compute.amazonaws.com/" -nodes -sha256 -keyout server.key -out server.csr -config opensslSAN.cnf
+
+4. Self-Signing using OpenSSL
+
+sudo openssl x509 -req -sha256 -CAcreateserial -in server.csr -days 365 -CA rootServer.cer -CAkey rootServer.key -out serverCert.cer

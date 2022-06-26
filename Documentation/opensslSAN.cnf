@@ -1,0 +1,43 @@
+[ req ]
+
+default_bits           = 2048
+
+distinguished_name     = req_distinguished_name
+
+req_extensions         = req_ext
+
+
+
+[ req_distinguished_name ]
+
+countryName            = UK
+
+stateOrProvinceName    = London
+
+localityName           = London
+
+organizationName       = KassiopeiaInc
+
+commonName             = ec2-18-134-9-161.eu-west-2.compute.amazonaws.com
+
+ 
+
+# Optionally, specify some defaults.
+countryName_default            = UK
+stateOrProvinceName_default    = London
+localityName_default           = London
+0.organizationName_default     = KassiopeiaInc
+organizationalUnitName_default = KassiopeiaInc
+emailAddress_default           = nlvmr3@gmail.com
+
+
+
+[ req_ext ]
+
+subjectAltName = @alt_names
+
+
+
+[alt_names]
+
+DNS.1   = 18.134.9.161
